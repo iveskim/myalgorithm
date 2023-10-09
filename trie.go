@@ -10,6 +10,9 @@ type TrieNode struct {
 }
 
 func NewTrieNode() *TrieNode {
+	//此处的代码必须使用make初始化一个map，如果只是&TrieNode{}，
+	//那么node.children['a'] = &TrieNode{}时会报错的,
+	//panic: assignment to entry in nil map
 	return &TrieNode{children: make(map[rune]*TrieNode)}
 }
 
@@ -65,5 +68,5 @@ func main() {
 	fmt.Println(root.Search("beer"))  // 输出 true
 	fmt.Println(root.Search("batt"))  // 输出 false
 
-	root.PrintTrie("")
+	root.PrintTrie("#")
 }
